@@ -73,7 +73,7 @@ def compress(choose, des_dir, src_dir, file_list):
 def compress_photo():
     '''调用压缩图片的函数
     '''
-    src_dir, des_dir = "photos/", "min_photos/"
+    src_dir, des_dir = "photos_tmp/", "min_photos_tmp/"
 
     if directory_exists(src_dir):
         if not directory_exists(src_dir):
@@ -142,7 +142,7 @@ def cut_photo():
     ----------
     调用Graphics类中的裁剪算法，将src_dir目录下的文件进行裁剪（裁剪成正方形）
     """
-    src_dir = "photos/"
+    src_dir = "photos_tmp/"
     if directory_exists(src_dir):
         if not directory_exists(src_dir):
             make_directory(src_dir)
@@ -172,12 +172,16 @@ def cut_photo():
 #     os.system('git commit -m "add photos"')
 #     os.system('git push origin master')
 
+def move_photo():
+    os.system('mv photos_tmp/* photos/')
+    os.system('mv min_photos_tmp/* min_photos/')
+
 if __name__ == "__main__":
     cut_photo()        # 裁剪图片，裁剪成正方形，去中间部分
     compress_photo()   # 压缩图片，并保存到mini_photos文件夹下
     # git_operation()    # 提交到github仓库
     upload.upload_dir()
     handle_photo()     # 将文件处理成json格式，存到博客仓库中
-    print("如果上传成功，请删除里面的照片")
+    move_photo()
 
 

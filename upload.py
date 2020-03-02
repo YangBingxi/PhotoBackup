@@ -31,10 +31,10 @@ def upload_file(file):
 
 def upload_dir():
     #要上传的文件夹
-    upload_dir = 'photos/'
+    upload_dir = 'photos_tmp/'
     for img in glob.glob(upload_dir+"*"):
         upload_file(img)
-    upload_dir = 'min_photos/'
+    upload_dir = 'min_photos_tmp/'
     for img in glob.glob(upload_dir+"*"):
         upload_file(img)
 
