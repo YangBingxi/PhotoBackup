@@ -181,7 +181,7 @@ if __name__ == "__main__":
     compress_photo()   # 压缩图片，并保存到mini_photos文件夹下
     # git_operation()    # 提交到github仓库
     upload.upload_dir()
-    handle_photo()     # 将文件处理成json格式，存到博客仓库中
     move_photo()
+    handle_photo()     # 将文件处理成json格式，存到博客仓库中
 
 
