@@ -13,8 +13,6 @@ q = Auth(access_key, secret_key)
 #要上传的空间
 bucket_name = 'swyoung-photo'
 
-#要上传的文件夹
-upload_dir = 'headUrl2/'
 
 def upload_file(file):
     #上传后保存的文件名
@@ -30,6 +28,13 @@ def upload_file(file):
     assert ret['key'] == key
     assert ret['hash'] == etag(localfile)
 
-for img in glob.glob(upload_dir+"*"):
-    upload_file(img)
+
+def upload_dir():
+    #要上传的文件夹
+    upload_dir = 'photos/'
+    for img in glob.glob(upload_dir+"*"):
+        upload_file(img)
+    upload_dir = 'min_photos/'
+    for img in glob.glob(upload_dir+"*"):
+        upload_file(img)
 

@@ -3,8 +3,10 @@ from PIL import Image
 import os
 import sys
 import json
+import upload
 from datetime import datetime
 from ImageProcess import Graphics
+
 
 # 定义压缩比，数值越大，压缩越小
 SIZE_normal = 1.0
@@ -159,21 +161,23 @@ def cut_photo():
 
 
 
-def git_operation():
-    '''
-    git 命令行函数，将仓库提交
-
-    ----------
-    需要安装git命令行工具，并且添加到环境变量中
-    '''
-    os.system('git add --all')
-    os.system('git commit -m "add photos"')
-    os.system('git push origin master')
+# def git_operation():
+#     '''
+#     git 命令行函数，将仓库提交
+#
+#     ----------
+#     需要安装git命令行工具，并且添加到环境变量中
+#     '''
+#     os.system('git add --all')
+#     os.system('git commit -m "add photos"')
+#     os.system('git push origin master')
 
 if __name__ == "__main__":
     cut_photo()        # 裁剪图片，裁剪成正方形，去中间部分
     compress_photo()   # 压缩图片，并保存到mini_photos文件夹下
-    git_operation()    # 提交到github仓库
+    # git_operation()    # 提交到github仓库
+    upload.upload_dir()
     handle_photo()     # 将文件处理成json格式，存到博客仓库中
+    print("如果上传成功，请删除里面的照片")
 
 
